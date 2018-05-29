@@ -19,4 +19,5 @@ public interface BookTypeDAO {
 	public int addBookType(BookType bookType);
 	
 	public int updateBookType(BookType bookType);
+	
 }

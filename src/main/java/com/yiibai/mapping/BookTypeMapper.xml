@@ -3,7 +3,7 @@
 <!--命名空间应该是对应接口的包名+类名 -->
 <mapper namespace="com.yiibai.mapping.BookTypeDAO">
     <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
-	<select id="getAllBookTypes" resultType="BookType">
+	<select id="getAllBookTypes" resultMap="bookTyperMaps">
 	    select id,typeName from booktypes
 	</select>
 	
@@ -18,4 +18,20 @@
 	<update id="updateBookType" parameterType="BookType">
 		update booktypes set typeName=#{typeName} where id=#{id}
 	</update>
+	
+	 <resultMap type="BookType" id="bookTyperMaps">  
+        <id column="id" property="id"/>  
+        <result column="typeName" property="typeName"/>  
+        <collection property="books" ofType="Book" select="getBooks" column="id">  
+        </collection>  
+    </resultMap>
+    
+    <select id="getBooks" parameterType="int" resultType="Book">  
+        select   
+            s.id,  
+            s.book_name,  
+            s.book_type 
+        from book s  
+        where book_type = #{id}  
+    </select> 
 </mapper>

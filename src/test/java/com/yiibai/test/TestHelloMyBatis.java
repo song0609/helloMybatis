@@ -29,7 +29,11 @@ public class TestHelloMyBatis {
         //访问数据库
         List<BookType> booktypes=bTDImpl.getAllBookTypes();
         for (BookType bookType : booktypes) {
-            System.out.println(bookType);
+            if(bookType.getBooks() !=null && !bookType.getBooks().isEmpty()){
+            	for (Book book : bookType.getBooks()) {
+					System.out.println(book.getBookName());
+				}
+            }
         }
         assertNotNull(booktypes);
     }
