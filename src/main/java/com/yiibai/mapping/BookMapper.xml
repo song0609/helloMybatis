@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+类名 -->
+<mapper namespace="com.yiibai.mapping.BookDAO">
+	<resultMap id="BookResultMap" type="Book">
+		<id property="id" column="id"/>
+	  	<result property="bookName" column="book_name"/>
+	  	<result property="bookType" column="book_type"/>
+	  	<association property="bookTypeName" select="selectType" column="book_type" javaType="String"/> <!-- column 传入select参数列 -->
+	</resultMap>
+	
+	<select id="selectType" resultType="String">
+	    select typeName from booktypes where id=#{book_type}
+	</select>
+	
+	<!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+	<select id="getAllBooks" resultMap="BookResultMap">
+	    select * from book
+	</select>
+
+</mapper>
