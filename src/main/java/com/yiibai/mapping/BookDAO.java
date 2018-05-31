@@ -9,9 +9,11 @@ import com.yiibai.entities.Book;
  *
  */
 public interface BookDAO {
-	/*
-	 * 获得所有图书类型
-	 */
+
 	public List<Book> getAllBooks();
+	
+	public List<Book> getBooksByIds(List<Integer> ids);
+	
+	public void batchAddBook(List<Book> list);
 	
 }

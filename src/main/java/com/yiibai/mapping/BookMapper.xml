@@ -17,5 +17,20 @@
 	<select id="getAllBooks" resultMap="BookResultMap">
 	    select * from book
 	</select>
+	
+	<select id="getBooksByIds" resultMap="BookResultMap">
+	    select * from book where id in
+	    <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+	    	#{item}
+	    </foreach>
+	</select>
 
+	
+	<insert id="batchAddBook" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
+	    INSERT INTO book (book_name,book_type)
+	    VALUES
+	    <foreach collection="list" separator="," index="index" item="book">
+	        (#{book.bookName},#{book.bookType})
+	    </foreach>
+	</insert>
 </mapper>

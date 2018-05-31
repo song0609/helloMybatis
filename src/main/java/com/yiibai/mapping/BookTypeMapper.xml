@@ -22,7 +22,7 @@
 	 <resultMap type="BookType" id="bookTyperMaps">  
         <id column="id" property="id"/>  
         <result column="typeName" property="typeName"/>  
-        <collection property="books" ofType="Book" select="getBooks" column="id">  
+        <collection property="books" ofType="Book" select="getBooks" column="id" javaType="ArrayList">  
         </collection>  
     </resultMap>
     

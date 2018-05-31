@@ -3,11 +3,13 @@ package com.yiibai.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.yiibai.entities.Book;
 import com.yiibai.entities.BookType;
 import com.yiibai.mapping.BookDAO;
 import com.yiibai.mapping.BookTypeDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class BTDImpl{
 
@@ -35,5 +37,15 @@ public class BTDImpl{
     
     public List<Book> getAllBooks() {
         return bookDAO.getAllBooks();
+    }
+    
+    public List<Book> getBooksByIds(List<Integer> ids){
+    	return bookDAO.getBooksByIds(ids);
+    }
+    
+    @Transactional
+    public void batchAddBook(List<Book> books){
+    	bookDAO.batchAddBook(books);
+    	return;
     }
 }
