@@ -48,4 +48,8 @@ public class BTDImpl{
     	bookDAO.batchAddBook(books);
     	return;
     }
+    
+    public List<Book> getBookIf(Book book){
+    	return bookDAO.selectBookIf(book);
+    }
 }

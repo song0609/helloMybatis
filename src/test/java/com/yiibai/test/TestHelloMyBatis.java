@@ -108,4 +108,17 @@ public class TestHelloMyBatis {
         bTDImpl.batchAddBook(books);
         System.out.println("testBatchAddBook end");
     }
+    
+    @Test
+    public void testSelectBookIf() {
+        //获得bean
+        BTDImpl bTDImpl=ctx.getBean("bTDImpl",BTDImpl.class);
+        Book book1 = new Book();
+        book1.setId(8);
+        book1.setBookType(1);
+       
+        List<Book> list = bTDImpl.getBookIf(book1);
+        System.out.println("list size:" + list.size());
+        System.out.println("testSelectBookIf end");
+    }
 }

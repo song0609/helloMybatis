@@ -33,4 +33,16 @@
 	        (#{book.bookName},#{book.bookType})
 	    </foreach>
 	</insert>
+	
+	<select id="selectBookIf" resultMap="BookResultMap">  
+	    select * from book  
+	    <trim prefix="where" prefixOverrides="and |or" suffix="" suffixOverrides="">  
+	        <if test="id != null">  
+	            id=#{id}  
+	        </if>  
+	        <if test="bookType != null">  
+	            and book_type=#{bookType}  
+	        </if>  
+	    </trim>  
+	</select>  
 </mapper>

@@ -16,4 +16,6 @@ public interface BookDAO {
 	
 	public void batchAddBook(List<Book> list);
 	
+	public List<Book> selectBookIf(Book book);
+	
 }
